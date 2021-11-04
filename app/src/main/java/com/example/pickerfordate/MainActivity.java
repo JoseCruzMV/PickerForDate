@@ -3,8 +3,10 @@ package com.example.pickerfordate;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.fragment.app.DialogFragment;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
+import android.widget.Toast;
 
 public class MainActivity extends AppCompatActivity {
 
@@ -17,5 +19,16 @@ public class MainActivity extends AppCompatActivity {
     public void showDataPicker(View view) {
         DialogFragment newFragment = new DatePickerFragment();
         newFragment.show(getSupportFragmentManager(), getString(R.string.date_picker));
+    }
+
+    public void processDataPickerResult(int year, int month, int day) {
+        String month_string = Integer.toString(month+1);
+        String day_string = Integer.toString(day);
+        String year_string = Integer.toString(year);
+        String dateMessage = (month_string + "/" +
+                day_string + "/" + year_string);
+        Toast.makeText(this, getString(R.string.date_text) + dateMessage,
+                Toast.LENGTH_SHORT).show();
+
     }
 }
